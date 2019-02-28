@@ -46,11 +46,11 @@ mysql -u root -p
 
 create database mediawikidb;
 
-create database mediawikidb_dev;
+create database mediawikidbdev;
 
 grant all privileges on mediawikidb.* to mediawiki@'localhost' identified by 'mypassword';
 
-grant all privileges on mediawikidb_dev.* to mediawiki@'localhost' identified by 'mypassword';
+grant all privileges on mediawikidbdev.* to mediawiki@'localhost' identified by 'mypassword';
 
 flush privileges;
 
@@ -59,8 +59,9 @@ exit;
 * CONFIG Folders
 ***********
 useradd odoo --home-dir=/home/odoo --create-home --uid=1000
-
-mkdir /home/mediawiki /home/api /home/nadekoBot
+useradd api --home-dir=/home/odoo --create-home --uid=1000
+useradd mediawiki --home-dir=/home/odoo --create-home --uid=1000
+useradd nadekobot --home-dir=/home/odoo --create-home --uid=1000
 
 mkdir /home/mediawiki/dev /home/mediawiki/dofus /home/mediawiki/www /home/mediawiki/endlessfrontier /home/mediawiki/hitchwiki
 ***********
