@@ -60,11 +60,11 @@ exit;
 ***********
 useradd odoo --home-dir=/home/odoo --create-home --uid=1000
 
-useradd api --home-dir=/home/odoo --create-home --uid=1000
+useradd api --home-dir=/home/api --create-home --uid=1001
 
-useradd mediawiki --home-dir=/home/odoo --create-home --uid=1000
+useradd mediawiki --home-dir=/home/mediawiki --create-home --uid=1002
 
-useradd nadekobot --home-dir=/home/odoo --create-home --uid=1000
+useradd nadekobot --home-dir=/home/nadekobot --create-home --uid=1003
 
 mkdir /home/mediawiki/dev /home/mediawiki/dofus /home/mediawiki/www /home/mediawiki/endlessfrontier /home/mediawiki/hitchwiki
 ***********
