@@ -59,8 +59,11 @@ exit;
 * CONFIG Folders
 ***********
 useradd odoo --home-dir=/home/odoo --create-home --uid=1000
+
 useradd api --home-dir=/home/odoo --create-home --uid=1000
+
 useradd mediawiki --home-dir=/home/odoo --create-home --uid=1000
+
 useradd nadekobot --home-dir=/home/odoo --create-home --uid=1000
 
 mkdir /home/mediawiki/dev /home/mediawiki/dofus /home/mediawiki/www /home/mediawiki/endlessfrontier /home/mediawiki/hitchwiki
