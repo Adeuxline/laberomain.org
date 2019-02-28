@@ -22,11 +22,8 @@ apt-get autoclean -y
 ***********
 * CONFIG PHP
 ***********
-vi /etc/php/7.0/fpm/php.ini
-#EDIT
-upload_max_filesize = 20M
-memory_limit = 128M
-
+rm /etc/php/7.0/fpm/php.ini
+cp laberomain.org/files/php/php.ini /etc/php/7.0/fpm/php.ini
 ***********
 * ENABLE SERVICES
 ***********
