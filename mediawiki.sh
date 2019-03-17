@@ -69,6 +69,7 @@ echo '                "mediawiki/semantic-media-wiki": "3.0.1"' >> /home/mediawi
 echo '        }' >> /home/mediawiki/dev/composer.local.json
 echo '}' >> /home/mediawiki/dev/composer.local.json
 
+cd /home/mediawiki/dev/ && git submodule update --init && cd
 composer update -d /home/mediawiki/dev --no-dev
 
 chown -R www-data:www-data /home/mediawiki/dev
@@ -86,3 +87,7 @@ ln -s /etc/nginx/sites-available/dev.dofus-wiki.org /etc/nginx/sites-enabled/
 fuser -k 80/tcp
 
 systemctl start nginx
+
+mysql -u root -pMXqREAi3 mediawikidev < laberomain.org/files/mediawiki/mediawikidev.sql
+
+cp laberomain.org/files/mediawiki/LocalSettings.php /home/mediawiki/dev/
