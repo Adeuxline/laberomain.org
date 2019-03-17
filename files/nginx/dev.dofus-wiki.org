@@ -1,0 +1,78 @@
+# HTTP Request will be Redirected to the HTTPS
+ server {
+     listen 80;
+     listen [::]:80;
+     server_name dev.dofus-wiki.org;
+     return 301 https://$host$request_uri;
+ }
+ 
+ # HTTPS Configuration
+ server {
+ 
+     listen 443 ssl;
+     listen [::]:443;
+     
+     server_name dev.dofus-wiki.org;
+     root /home/mediawiki/dev;
+ 
+     index index.php;
+     autoindex off;
+ 
+     # SSL Certificate Configuration
+     ssl_certificate /etc/letsencrypt/live/dev.dofus-wiki.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/dev.dofus-wiki.org/privkey.pem;
+ 
+     client_max_body_size 5m;
+     client_body_timeout 60;
+ 
+     location / {
+         try_files $uri $uri/ @rewrite;
+     }
+ 
+     location @rewrite {
+         rewrite ^/(.*)$ /index.php?title=$1&$args;
+     }
+ 
+     location ^~ /maintenance/ {
+         return 403;
+     }
+ 
+     # PHP Configuration
+     location ~ \.php$ {
+         fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+         include fastcgi_params;
+         include snippets/fastcgi-php.conf;
+     }
+ 
+     location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+         try_files $uri /index.php;
+         expires max;
+         log_not_found off;
+     }
+ 
+     location = /_.gif {
+         expires max;
+         empty_gif;
+     }
+ 
+     location ^~ ^/(cache|includes|maintenance|languages|serialized|tests|images/deleted)/ {
+         deny all;
+     }
+ 
+     location ^~ ^/(bin|docs|extensions|includes|maintenance|mw-config|resources|serialized|tests)/ {
+         internal;
+     }
+ 
+     # Security for 'image' directory
+     location ~* ^/images/.*.(html|htm|shtml|php)$ {
+         types { }
+         default_type text/plain;
+     }
+ 
+     # Security for 'image' directory
+     location ^~ /images/ {
+         try_files $uri /index.php;
+     }
+ 
+ }
