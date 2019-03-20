@@ -1,38 +1,18 @@
 #!/bin/bash
 
-add-apt-repository ppa:certbot/certbot -y
-
-apt update -y
-
-sudo apt install nginx -y
-systemctl start nginx
-systemctl enable nginx
-
-apt install imagemagick php7.0-fpm php7.0-intl php7.0-xml php7.0-curl php7.0-gd php7.0-mbstring php7.0-mysql php-apcu -y
-
-rm /etc/php/7.0/fpm/php.ini
-cp laberomain.org/files/php/php.ini /etc/php/7.0/fpm/php.ini
 systemctl restart php7.0-fpm
 systemctl enable php7.0-fpm
 
-sudo apt install mysql-server mysql-client -y
 systemctl start mysql
 systemctl enable mysql
 
-echo '##########################'
-echo '#     MYSQL PASSWORD     #'
-echo '##########################'
-read -p "Enter your mysql password : " password
-
-mysql -u root -p$password <<EOF
+mysql -u root -p <<EOF
 	create database mediawikidb;
 	create database mediawikidev;
 	grant all privileges on mediawikidb.* to mediawiki@'localhost' identified by 'mypassword';
 	grant all privileges on mediawikidev.* to mediawiki@'localhost' identified by 'mypassword';
 	flush privileges;
 EOF
-
-sudo apt install composer zip unzip -y
 
 useradd mediawiki --home-dir=/home/mediawiki --create-home --uid=1001
 mkdir /home/mediawiki/dev
@@ -77,7 +57,6 @@ chown -R www-data:www-data /home/mediawiki/dev
 chmod a+x /home/mediawiki/dev/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize
 chmod a+x /home/mediawiki/dev/extensions/Scribunto/includes/engines/LuaStandalone/binaries/lua5_1_5_linux_64_generic/lua
 
-apt install certbot python-certbot-nginx letsencrypt -y
 systemctl stop nginx
 # certbot --nginx certonly -m 'info@laberomain.org' -n -d dev.dofus-wiki.org --agree-tos
 
@@ -88,6 +67,6 @@ fuser -k 80/tcp
 
 systemctl start nginx
 
-mysql -u root -pMXqREAi3 mediawikidev < laberomain.org/files/mediawiki/mediawikidev.sql
+# cat laberomain.org/files/mediawiki/LocalSettings.php >> /home/mediawiki/dev/LocalSettings.php
 
-cp laberomain.org/files/mediawiki/LocalSettings.php /home/mediawiki/dev/
+# php /home/mediawiki/dev/maintenance/update.php
