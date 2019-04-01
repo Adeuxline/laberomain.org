@@ -33,13 +33,28 @@ sudo apt install mysql-server mysql-client -y
 systemctl start mysql
 systemctl enable mysql
 
-echo '##########################'
-echo '#     MYSQL PASSWORD     #'
-echo '##########################'
-read -p "Enter your mysql password : " password
-
 #
 # CERTIFICATS SSL
 #
 
 apt install certbot python-certbot-nginx letsencrypt -y
+
+#
+# UPDATE NODEJS
+#
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+nvm install node
+
+#
+# Installe DOCKER
+#
+
+sudo apt-get install \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg-agent \
+  software-properties-common -y
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

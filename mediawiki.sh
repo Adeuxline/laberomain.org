@@ -35,7 +35,8 @@ declare -a extensions=("CodeEditor"
                        "TorBlock"
                        "Variables"
                        "Loops"
-                       "HeaderTabs");
+                       "HeaderTabs"
+                       "PageForms");
 
 for val in "${extensions[@]}"; do
 	git clone https://github.com/wikimedia/mediawiki-extensions-$val.git /home/mediawiki/dev/extensions/$val
