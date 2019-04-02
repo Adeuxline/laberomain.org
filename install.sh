@@ -43,18 +43,12 @@ apt install certbot python-certbot-nginx letsencrypt -y
 # UPDATE NODEJS
 #
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 nvm install node
 
 #
-# Installe DOCKER
+# Other packages
 #
+apt install composer zip unzip -y
 
-sudo apt-get install \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg-agent \
-  software-properties-common -y
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+exit
