@@ -1,7 +1,7 @@
 #!/bin/bash
 
-systemctl restart php7.0-fpm
-systemctl enable php7.0-fpm
+systemctl restart php7-3-fpm
+systemctl enable php7.3-fpm
 
 systemctl start mysql
 systemctl enable mysql

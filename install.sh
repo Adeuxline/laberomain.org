@@ -18,12 +18,12 @@ systemctl enable nginx
 #
 
 
-apt install imagemagick php7.0-fpm php7.0-intl php7.0-xml php7.0-curl php7.0-gd php7.0-mbstring php7.0-mysql php-apcu -y
+apt install imagemagick php7.3-fpm php7.3-intl php7.3-xml php7.3-curl php7.3-gd php7.3-mbstring php7.3-mysql php-apcu -y
 
-rm /etc/php/7.0/fpm/php.ini
-cp laberomain.org/files/php/php.ini /etc/php/7.0/fpm/php.ini
-systemctl restart php7.0-fpm
-systemctl enable php7.0-fpm
+rm /etc/php/7.3/fpm/php.ini
+cp laberomain.org/files/php/php.ini /etc/php/7.3/fpm/php.ini
+systemctl restart php7.3-fpm
+systemctl enable php7.3-fpm
 
 #
 # MYSQL SERVEUR
