@@ -17,6 +17,12 @@ systemctl enable nginx
 # PHP POUR MEDIAWIKI
 #
 
+add-apt-repository ppa:ondrej/php -y
+apt update
+apt install apt-transport-https lsb-release -y
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+apt update
 
 apt install imagemagick php7.3-fpm php7.3-intl php7.3-xml php7.3-curl php7.3-gd php7.3-mbstring php7.3-mysql php-apcu -y
 
@@ -44,11 +50,20 @@ apt install certbot python-certbot-nginx letsencrypt -y
 #
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install node
 
 #
 # Other packages
 #
 apt install composer zip unzip -y
+
+apt-get dist-upgrade
+
+apt-get autoremove
+
+apt-get autoclean
 
 exit
