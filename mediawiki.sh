@@ -46,8 +46,9 @@ rm /home/mediawiki/dev/composer.local.json-sample
 echo '{' > /home/mediawiki/dev/composer.local.json
 echo '        "require": {' >> /home/mediawiki/dev/composer.local.json
 echo '                "mediawiki/bootstrap": "1.3.0",' >> /home/mediawiki/dev/composer.local.json
-echo '                "mediawiki/semantic-media-wiki": "3.0.1"' >> /home/mediawiki/dev/composer.local.json
-echo '                "mediawiki/semantic-result-formats": "3.0.0"' >> /home/mediawiki/dev/composer.local.json
+echo '                "mediawiki/semantic-media-wiki": "3.0.1",' >> /home/mediawiki/dev/composer.local.json
+echo '                "mediawiki/semantic-result-formats": "3.0.0",' >> /home/mediawiki/dev/composer.local.json
+echo '                "mediawiki/maps": "^7"' >> /home/mediawiki/dev/composer.local.json
 echo '        }' >> /home/mediawiki/dev/composer.local.json
 echo '}' >> /home/mediawiki/dev/composer.local.json
 
