@@ -58,7 +58,7 @@ nvm install node
 #
 # Other packages
 #
-apt install composer zip unzip -y
+apt install composer zip unzip automysqlbackup -y
 
 apt-get dist-upgrade
 
